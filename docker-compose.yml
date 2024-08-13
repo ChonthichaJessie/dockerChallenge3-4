@@ -11,6 +11,11 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
       - DB_DATABASE=${DB_DATABASE}
+      - DB_HOST=db
+      - DB_PORT=3306
+    depends_on:
+      - db
+
 
   db:
     build:
@@ -23,6 +28,8 @@ services:
       - MARIADB_DATABASE=${DB_DATABASE}
       - MARIADB_USER=${DB_USERNAME}
       - MARIADB_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "3306:3306"
 
   nginx:
     build:
